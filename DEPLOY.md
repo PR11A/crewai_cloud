@@ -41,6 +41,27 @@ Everything your app needs lives inside this folder.
 6. Wait 10 seconds, then select your new project from the dropdown at the top
 
 ---
+Steps to follow that are explained below 
+https://cloud.google.com/sdk/docs/install-sdk
+gcloud --version
+gcloud init
+gcloud config get-value project
+gcloud services enable run.googleapis.com
+gcloud services enable cloudbuild.googleapis.com
+gcloud services enable secretmanager.googleapis.com
+echo -n "PASTE_YOUR_OPENAI_KEY_HERE" | gcloud secrets create OPENAI_API_KEY --data-file=-
+cd "C:\Users\Prasanth Sahoo\Downloads\CrewAI\my_crew_app"
+gcloud run deploy my-crew-app `
+  --source . `
+  --platform managed `
+  --region us-central1 `
+  --allow-unauthenticated `
+  --set-secrets OPENAI_API_KEY=OPENAI_API_KEY:latest `
+  --memory 2Gi `
+  --timeout 300
+
+
+---
 
 ### Step 3: Install Google Cloud CLI on your computer
 
